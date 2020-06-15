@@ -2,10 +2,19 @@ import {
   constructRoutes,
   constructApplications,
   constructLayoutEngine,
-} from "single-spa-layout";
-import { registerApplication, start } from "single-spa";
+} from 'single-spa-layout';
+import { registerApplication, start } from 'single-spa';
 
-const routes = constructRoutes(document.querySelector("#single-spa-layout"));
+const data = {
+  loaders: {
+    navLoader: `<div>Loading...</div>`,
+  },
+};
+
+const routes = constructRoutes(
+  document.querySelector('#single-spa-layout'),
+  data
+);
 const applications = constructApplications({
   routes,
   loadApp: ({ name }) => System.import(name),
@@ -19,7 +28,7 @@ const layoutEngine = constructLayoutEngine({
 
 applications.forEach(registerApplication);
 
-System.import("@react-mf/styleguide").then(() => {
+System.import('@react-mf/styleguide').then(() => {
   // Activate the layout engine once the styleguide CSS is loaded
   layoutEngine.activate();
   start();
