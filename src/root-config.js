@@ -7,7 +7,9 @@ import { registerApplication, start } from 'single-spa';
 
 const data = {
   loaders: {
-    navLoader: `<div>Loading...</div>`,
+    navLoader: `<div style="display:block;background-color:yellow;color:black;padding:20px;font-size:100px;">
+    Loading...
+   </div>`,
   },
 };
 
